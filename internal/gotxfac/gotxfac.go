@@ -23,18 +23,28 @@ func StrStdin() (stringInput string) {
 	return stringInput
 }
 
-func ScanSettings() (string, int) {
-	stdin := bufio.NewScanner(os.Stdin)
+func ScanSettings() (string, int, error) {
 	fmt.Printf("[+] Set prevTxId: ")
-	stdin.Scan()
 	prevTxId := StrStdin()
 
 	fmt.Printf("[+] Set txout: ")
-	stdin.Scan()
 	txoutstr := StrStdin()
 	txout, _ := strconv.Atoi(strings.TrimSpace(txoutstr))
 
-	return prevTxId, txout
+	return prevTxId, txout, nil
+}
+
+func CheckSettings(prevTxId string, txout int) (bool, error) {
+	fmt.Printf("[+] Are you sure about this setting? [y/n]: ")
+
+	checked := StrStdin()
+	if checked == "y" {
+		return true, nil
+	} else if checked == "f" {
+		return false, nil
+	} else {
+		return false, nil
+	}
 }
 
 func New(prevTxId string, txout int) *Settings {
