@@ -1,7 +1,15 @@
 package main
 
-import "log"
+import "fmt"
+
+var scan_flag bool = false
 
 func main() {
-	log.Printf("[*] Start Creating Transactions!")
+	fmt.Println("[*] Start GOTXFAC!!!")
+	for {
+
+		if scan_flag == true {
+			break
+		}
+	}
 }
